@@ -1,0 +1,9 @@
+services:
+  kracken:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "2222:22"
+    restart: unless-stopped
+
