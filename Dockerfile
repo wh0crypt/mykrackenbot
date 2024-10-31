@@ -15,7 +15,9 @@ RUN mkdir -p /root/.ssh/
 
 RUN git clone https://github.com/wh0crypt/mykrackenbot.git /root/mykrackenbot
 
-RUN chmod +x /root/mykrackenbot/final/setup.sh
+RUN chmod +x /root/mykrackenbot/setup.sh
+
+COPY .env /root/mykrackenbot/.env
 
 RUN pip3 install --break-system-packages -r /root/mykrackenbot/requirements.txt
 
@@ -24,4 +26,4 @@ RUN echo '#!/bin/bash\nrm -rf /root/mykrackenbot && git clone https://github.com
 
 EXPOSE 22
 
-CMD ["/root/start.sh", "&&", "/root/mykrackenbot/final/setup.sh"]
+CMD ["/root/start.sh"]
