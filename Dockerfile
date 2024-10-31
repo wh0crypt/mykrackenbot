@@ -13,15 +13,12 @@ RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/
 
 RUN mkdir -p /root/.ssh/
 
-RUN git clone https://github.com/wh0crypt/mykrackenbot.git /root/mykrackenbot
-
-RUN chmod +x /root/mykrackenbot/setup.sh
-
+RUN git clone --single-branch --branch main https://github.com/wh0crypt/mykrackenbot.git /root/mykrackenbot
+RUN chmod 777 -R /root/mykrackenbot/
 COPY .env /root/mykrackenbot/.env
-
 RUN pip3 install --break-system-packages -r /root/mykrackenbot/requirements.txt
 
-RUN echo '#!/bin/bash\nrm -rf /root/mykrackenbot && git clone https://github.com/wh0crypt/mykrackenbot.git /root/mykrackenbot\nexec /usr/sbin/sshd -D' > /root/start.sh && \
+RUN echo '#!/bin/bash\ncd /root/mykrackenbot && git fetch origin\nexec /usr/sbin/sshd -D' > /root/start.sh && \
     chmod +x /root/start.sh
 
 EXPOSE 22

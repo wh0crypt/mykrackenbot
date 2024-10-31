@@ -27,3 +27,5 @@ for file in /root/mykrackenbot/bin/*; do
   chown root:root "$new_file"
   chmod +x "$new_file"
 done
+
+echo "Setup finished."
