@@ -19,4 +19,6 @@ Time: __"$login_time"__
 EOF
 )
 
-telegram-send.py "/root/mykrackenbot/.env" "$message"
+encoded_message=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$message'''))")
+
+telegram-send.py "/root/mykrackenbot/.env" "$encoded_message"
