@@ -6,5 +6,5 @@ services:
     container_name: kracken
     ports:
       - "2222:22"
-    restart: unless-stopped
+    restart: always
 

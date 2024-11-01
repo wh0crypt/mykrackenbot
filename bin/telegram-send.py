@@ -32,7 +32,7 @@ def get_args() -> Tuple[str, str]:
 async def send_message(bot_token: str, channel_id: str, message: str) -> None:
   try:
     bot = telegram.Bot(token=bot_token)
-    await bot.send_message(chat_id=channel_id, text=message, parse_mode='MarkdownV2')
+    await bot.send_message(chat_id=channel_id, text=message, parse_mode='HTML')
     print("Message sent successfully!")
   except telegram.error.TelegramError as e:
     print(f"Failed to send message: {e}")
