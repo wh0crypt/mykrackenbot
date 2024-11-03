@@ -14,7 +14,7 @@ def get_env(env_file: str) -> Tuple[str, str]:
   bot_token = os.getenv("BOT_TOKEN")
   channel_id = os.getenv("CHANNEL_ID")
   if not bot_token or not channel_id:
-    print("Error: BOT_TOKEN or CHANNEL_ID not found in the .env file.")
+    print("get_env: BOT_TOKEN or CHANNEL_ID not found in the .env file.")
     sys.exit(1)
   return bot_token, channel_id
 
@@ -24,7 +24,7 @@ def get_args() -> Tuple[str, str]:
     sys.exit(0)
 
   if len(sys.argv) != 3:
-    print("Error: You can pass only two arguments: <env_file> and \"<text message>\".")
+    print("get_args: You can pass only two arguments: <env_file> and \"<text message>\".")
     sys.exit(1)
   
   return sys.argv[1], sys.argv[2]
@@ -33,9 +33,9 @@ async def send_message(bot_token: str, channel_id: str, message: str) -> None:
   try:
     bot = telegram.Bot(token=bot_token)
     await bot.send_message(chat_id=channel_id, text=message, parse_mode='HTML')
-    print("Message sent successfully!")
+    print("send_message: Message sent successfully!")
   except telegram.error.TelegramError as e:
-    print(f"Failed to send message: {e}")
+    print(f"send_message: Failed to send message: {e}")
     sys.exit(1)
 
 async def main():
