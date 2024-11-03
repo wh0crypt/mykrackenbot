@@ -2,7 +2,11 @@ FROM ubuntu:latest
 
 # Prepare container
 RUN apt-get update -y && \
-    apt-get install -y openssh-server git python3 python3-pip && \
+    apt-get install -y --no-install-recommends \
+    openssh-server \
+    git \
+    python3 \
+    python3-pip && \
     rm -rf /var/lib/apt/lists/*
 
 # Configure SSH
