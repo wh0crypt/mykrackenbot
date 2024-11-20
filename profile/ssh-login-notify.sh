@@ -4,7 +4,7 @@
 
 login_ip="$(echo $SSH_CONNECTION | cut -d " " -f 1)"
 login_user="$(whoami)"
-login_date="$(date +"%a,%e %b %Y")"
+login_date="$(date +"%a, %e %b %Y")"
 login_time="$(date +"%r")"
 login_iso="$(date -Iseconds)"
 
@@ -21,3 +21,4 @@ ISO: <i>"$login_iso"</i>
 """
 
 telegram-send.py "/root/mykrackenbot/.env" "$message"
+
